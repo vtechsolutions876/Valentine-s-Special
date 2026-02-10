@@ -25,9 +25,8 @@ const params=new URLSearchParams(window.location.search);
 document.getElementById('name').innerText=
   params.get('name')||"My Love 💘";
 
-const imgData=params.get("img");
 document.getElementById('photo').src=
-  imgData || "https://i.imgur.com/8Km9tLL.png";
+  "https://i.imgur.com/6X4KQ0B.jpeg";
 
 qn.innerText=questions[index];
 

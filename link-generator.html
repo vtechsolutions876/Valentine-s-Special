@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Create Valentine Link 💘</title>
+
 <style>
 body{
   margin:0;
@@ -14,32 +15,39 @@ body{
   align-items:center;
   color:white;
 }
+
 .box{
   background:rgba(0,0,0,0.25);
   padding:30px;
   border-radius:20px;
   text-align:center;
-  width:320px;
+  width:340px;
 }
+
 input,button{
   width:100%;
-  padding:10px;
+  padding:12px;
   margin:10px 0;
   border:none;
   border-radius:8px;
 }
+
 button{
   background:#00ff88;
   font-weight:bold;
   cursor:pointer;
 }
-img{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  object-fit:cover;
-  margin-top:10px;
+
+.shareBtns button{
+  background:#25D366;
+  color:white;
+  margin-top:8px;
 }
+
+.insta{
+  background:#E1306C !important;
+}
+
 #linkBox{
   margin-top:15px;
   word-break:break-all;
@@ -53,28 +61,19 @@ img{
   <h2>Create Proposal Link 🔗</h2>
 
   <input id="name" placeholder="Partner Name">
-  <input type="file" id="photoInput" accept="image/*">
-  <img id="preview" style="display:none;">
 
   <button onclick="generateLink()">Generate Link 💖</button>
+
   <div id="linkBox"></div>
+
+  <div class="shareBtns" id="shareBtns" style="display:none;">
+    <button onclick="shareWhatsApp()">Share on WhatsApp 📲</button>
+    <button class="insta" onclick="copyLink()">Copy for Instagram 📸</button>
+  </div>
 </div>
 
 <script>
-let base64Image="";
-
-document.getElementById("photoInput").onchange=function(e){
-  const file=e.target.files[0];
-  const reader=new FileReader();
-
-  reader.onload=function(){
-    base64Image=reader.result;
-    document.getElementById("preview").src=base64Image;
-    document.getElementById("preview").style.display="block";
-  };
-
-  reader.readAsDataURL(file);
-};
+let finalLink="";
 
 function generateLink(){
   const name=document.getElementById("name").value;
@@ -82,10 +81,25 @@ function generateLink(){
   const base=window.location.origin+
     window.location.pathname.replace("link-generator.html","index.html");
 
-  const link=`${base}?name=${encodeURIComponent(name)}&img=${encodeURIComponent(base64Image)}`;
+  finalLink=`${base}?name=${encodeURIComponent(name)}`;
 
   document.getElementById("linkBox").innerHTML=
-    `<a href="${link}" target="_blank">${link}</a>`;
+    `<a href="${finalLink}" target="_blank">${finalLink}</a>`;
+
+  document.getElementById("shareBtns").style.display="block";
+}
+
+// WhatsApp share
+function shareWhatsApp(){
+  const msg=`💖 Valentine Surprise For You 💖\n${finalLink}`;
+  const url=`https://wa.me/?text=${encodeURIComponent(msg)}`;
+  window.open(url,"_blank");
+}
+
+// Instagram copy link
+function copyLink(){
+  navigator.clipboard.writeText(finalLink);
+  alert("Link Copied 😍\nPaste in Instagram DM / Bio");
 }
 </script>
 
