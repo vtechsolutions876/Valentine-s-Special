@@ -39,11 +39,15 @@ body{
   width:320px;
 }
 
-img{
-  width:160px;
-  height:160px;
-  border-radius:20px;
-  object-fit:cover;
+.heartImg{
+  font-size:90px;
+  margin-bottom:10px;
+  animation:beat 1s infinite;
+}
+
+@keyframes beat{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.2);}
 }
 
 button{

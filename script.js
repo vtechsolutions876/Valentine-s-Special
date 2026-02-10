@@ -25,9 +25,6 @@ const params=new URLSearchParams(window.location.search);
 document.getElementById('name').innerText=
   params.get('name')||"My Love 💘";
 
-document.getElementById('photo').src=
-  "https://i.imgur.com/6X4KQ0B.jpeg";
-
 qn.innerText=questions[index];
 
 setInterval(()=>{
@@ -89,8 +86,8 @@ function showYesToast(){
 function finalScreen(){
   document.body.innerHTML=`
     <div style="text-align:center;color:white">
-      <h1 style="font-size:3.2rem">She Said Yes 💖😍</h1>
-      <h2 style="font-size:2.2rem">I Love You ❤️</h2>
+      <h1 style="font-size:3.2rem">You Said Yes 💖</h1>
+      <h2 style="font-size:2.2rem">Now Tell Me I Love You ❤️</h2>
       <div class="hearts" id="hearts"></div>
     </div>
 

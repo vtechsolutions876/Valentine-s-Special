@@ -89,17 +89,15 @@ function generateLink(){
   document.getElementById("shareBtns").style.display="block";
 }
 
-// WhatsApp share
 function shareWhatsApp(){
   const msg=`💖 Valentine Surprise For You 💖\n${finalLink}`;
   const url=`https://wa.me/?text=${encodeURIComponent(msg)}`;
   window.open(url,"_blank");
 }
 
-// Instagram copy link
 function copyLink(){
   navigator.clipboard.writeText(finalLink);
-  alert("Link Copied 😍\nPaste in Instagram DM / Bio");
+  alert("Link Copied 😍");
 }
 </script>
 
