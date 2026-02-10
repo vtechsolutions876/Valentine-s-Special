@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Create Valentine Link 💘</title>
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,#ff4e8a,#ff9ecb);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+.box{
+  background:rgba(0,0,0,0.25);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  width:320px;
+}
+input,button{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border:none;
+  border-radius:8px;
+}
+button{
+  background:#00ff88;
+  font-weight:bold;
+  cursor:pointer;
+}
+img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-top:10px;
+}
+#linkBox{
+  margin-top:15px;
+  word-break:break-all;
+  font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Create Proposal Link 🔗</h2>
+
+  <input id="name" placeholder="Partner Name">
+  <input type="file" id="photoInput" accept="image/*">
+  <img id="preview" style="display:none;">
+
+  <button onclick="generateLink()">Generate Link 💖</button>
+  <div id="linkBox"></div>
+</div>
+
+<script>
+let base64Image="";
+
+document.getElementById("photoInput").onchange=function(e){
+  const file=e.target.files[0];
+  const reader=new FileReader();
+
+  reader.onload=function(){
+    base64Image=reader.result;
+    document.getElementById("preview").src=base64Image;
+    document.getElementById("preview").style.display="block";
+  };
+
+  reader.readAsDataURL(file);
+};
+
+function generateLink(){
+  const name=document.getElementById("name").value;
+
+  const base=window.location.origin+
+    window.location.pathname.replace("link-generator.html","index.html");
+
+  const link=`${base}?name=${encodeURIComponent(name)}&img=${encodeURIComponent(base64Image)}`;
+
+  document.getElementById("linkBox").innerHTML=
+    `<a href="${link}" target="_blank">${link}</a>`;
+}
+</script>
+
+</body>
+</html>
